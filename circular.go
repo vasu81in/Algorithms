@@ -37,16 +37,15 @@ func (list *CircularList) insert(e int) {
 		rear.next = rear
 		return
 	}
-	r := rear
-	prev := r
-	curr := r.next
+	prev := rear
+	curr := rear.next
 	for {
 		if e <= curr.elem {
 			break
 		}
 		prev = curr
 		curr = curr.next
-		if curr == r.next {
+		if curr == rear.next {
 			break
 		}
 	}
@@ -78,8 +77,7 @@ func (list *CircularList) delete(e int) {
 		fmt.Println("Circular list is empty")
 		return
 	}
-	r := rear
-	prev := r
+	prev := rear
 	cur := prev.next
 	for {
 		if e <= cur.elem {
@@ -106,7 +104,6 @@ func (list *CircularList) delete(e int) {
 	prev.next = cur.next
 	//delete(cur)
 	return
-	
 }
 
 func main() {
