@@ -24,7 +24,7 @@ type CircularList struct {
 
 var rear *CircularList
 
-func (list *CircularList) NewElement(e int) *CircularList {
+func (list *CircularList) new_element(e int) *CircularList {
 	return &CircularList{
 		elem: e,
 		next: nil,
@@ -33,7 +33,7 @@ func (list *CircularList) NewElement(e int) *CircularList {
 
 func (list *CircularList) insert(e int) {
 	if rear == nil {
-		rear = list.NewElement(e)
+		rear = list.new_element(e)
 		rear.next = rear
 		return
 	}
@@ -50,7 +50,7 @@ func (list *CircularList) insert(e int) {
 			break
 		}
 	}
-	temp := list.NewElement(e)
+	temp := list.new_element(e)
 	prev.next = temp
 	temp.next = curr
 	if e > rear.elem {
