@@ -95,14 +95,14 @@ func (list *CircularList) delete(e int) {
 	}
 	if cur == prev { // single node 
 		rear = nil
-		//delete(cur)
+		//delete(cur) // GC will reap
 		return
 	}
 	if cur == rear {
 		rear = prev // fix rear if last node is deleted
 	}
 	prev.next = cur.next
-	//delete(cur)
+	//delete(cur) // GC will reap
 	return
 }
 
