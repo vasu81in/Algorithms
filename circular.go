@@ -24,7 +24,7 @@ type CircularList struct {
 
 var rear *CircularList
 
-func (list *CircularList) NewElement(e int) *CircularList {
+func (list *CircularList) new_element(e int) *CircularList {
 	return &CircularList{
 		elem: e,
 		next: nil,
@@ -33,24 +33,23 @@ func (list *CircularList) NewElement(e int) *CircularList {
 
 func (list *CircularList) insert(e int) {
 	if rear == nil {
-		rear = list.NewElement(e)
+		rear = list.new_element(e)
 		rear.next = rear
 		return
 	}
-	r := rear
-	prev := r
-	curr := r.next
+	prev := rear
+	curr := rear.next
 	for {
 		if e <= curr.elem {
 			break
 		}
 		prev = curr
 		curr = curr.next
-		if curr == r.next {
+		if curr == rear.next {
 			break
 		}
 	}
-	temp := list.NewElement(e)
+	temp := list.new_element(e)
 	prev.next = temp
 	temp.next = curr
 	if e > rear.elem {
@@ -78,8 +77,7 @@ func (list *CircularList) delete(e int) {
 		fmt.Println("Circular list is empty")
 		return
 	}
-	r := rear
-	prev := r
+	prev := rear
 	cur := prev.next
 	for {
 		if e <= cur.elem {
@@ -97,16 +95,15 @@ func (list *CircularList) delete(e int) {
 	}
 	if cur == prev { // single node 
 		rear = nil
-		//delete(cur)
+		//delete(cur) // GC will reap
 		return
 	}
 	if cur == rear {
 		rear = prev // fix rear if last node is deleted
 	}
 	prev.next = cur.next
-	//delete(cur)
+	//delete(cur) // GC will reap
 	return
-	
 }
 
 func main() {
