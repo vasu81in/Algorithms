@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-    stack "github.com/golang-collections/collections/stack"
 )
 
 type elem struct {
@@ -69,6 +68,5 @@ func main() {
 	f.add_edge(2, 4)
 	f.add_edge(3, 4)
 	f.display()
-    s := stack.New()
 }
 
