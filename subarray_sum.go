@@ -38,5 +38,6 @@ func subset(a []int) {
 
 func main() {
 	subset([]int{1, 2, 3, 4})
-	subset([]int{1, 2, 3, 4})
+	subset([]int{1, 2, 3})
+}
 
