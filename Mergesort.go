@@ -6,9 +6,7 @@ import (
 
 func merge(a []int, b []int) []int {
 	var i, j, k int
-
 	c := make([]int, len(a)+len(b))
-
 	for i < len(a) && j < len(b) {
 		if a[i] <= b[j] {
 			c[k] = a[i]
@@ -20,13 +18,11 @@ func merge(a []int, b []int) []int {
 			j++
 		}
 	}
-
 	for i < len(a) {
 		c[k] = a[i]
 		k++
 		i++
 	}
-
 	for j < len(b) {
 		c[k] = b[j]
 		k++
