@@ -1,0 +1,76 @@
+package main
+
+import (
+	"fmt"
+)
+
+// Ex: {0,1,2,3} {5,6} {4,7,8,9}
+// Lets form the above connected components
+// in the following example. Here, the time
+// complexity is :-
+// Find operation  O(1)
+// Union operation O(N) -- N is the number of nodes in the graph
+// Worst time complexity of M unions on N nodes is MxN which is O(N^2)
+
+type UnionFind struct {
+	N    int
+	elem []int
+}
+
+func (this *UnionFind) Init(n int) {
+	this.N = n
+	this.elem = make([]int, n, n)
+	for i := 0; i < len(this.elem); i++ {
+		this.elem[i] = i
+	}
+}
+
+func (this *UnionFind) Find(a int, b int) bool {
+	if this.elem[a] == this.elem[b] {
+		return true
+	} else {
+		return false
+	}
+}
+
+func (this *UnionFind) Union(a int, b int) {
+	t := this.elem[a]
+
+	for i := 0; i < len(this.elem); i++ {
+		if this.elem[i] == t {
+			this.elem[i] = this.elem[b]
+		}
+	}
+}
+
+//
+//[0 1 2 3 4 5 6 7 8 9]
+//[1 1 2 3 4 5 6 7 8 9]
+//[2 2 2 3 4 5 6 7 8 9]
+//[3 3 3 3 4 5 6 7 8 9]
+//[3 3 3 3 4 5 6 7 8 9]
+//[3 3 3 3 9 6 6 9 9 9]
+//true
+//false
+
+func main() {
+	uf := new(UnionFind)
+	uf.Init(10)
+	fmt.Println(uf.elem)
+	uf.Union(0, 1)
+	fmt.Println(uf.elem)
+	uf.Union(1, 2)
+	fmt.Println(uf.elem)
+	uf.Union(2, 3)
+	fmt.Println(uf.elem)
+	uf.Union(4, 4)
+	fmt.Println(uf.elem)
+	uf.Union(5, 6)
+	uf.Union(4, 7)
+	uf.Union(7, 8)
+	uf.Union(8, 9)
+	fmt.Println(uf.elem)
+	fmt.Println(uf.Find(2, 3))
+	fmt.Println(uf.Find(6, 4))
+}
+
